@@ -1,0 +1,24 @@
+# 노드 모듈과 종속성을 무시합니다.
+node_modules/
+
+# 빌드 결과물을 무시합니다.
+build/
+dist/
+
+# 환경 설정 파일을 무시합니다.
+.env
+.env.local
+
+# 기타 파일을 무시합니다.
+*.min.js
+*.bundle.js
+
+# 특정 디렉토리 내의 모든 JS 파일을 무시합니다.
+some/specific/directory/*.js
+
+# 특정 파일을 무시합니다.
+ignoreThisFile.js
+
+# 특정 파일 확장자를 무시합니다.
+*.test.js
+*.spec.js
