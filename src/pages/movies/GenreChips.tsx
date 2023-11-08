@@ -33,12 +33,10 @@ interface GenreChipProps {
   onClick: () => void;
 }
 
-// 장르 칩을 표현할 컴포넌트
 const GenreChip = ({ genreName, onClick, isSelected }: GenreChipProps & { isSelected: boolean }) => {
-  // 선택된 칩과 선택되지 않은 칩의 스타일을 조건부로 적용합니다.
   const className = isSelected
-    ? 'flex-shrink-0 px-3 py-1 mr-2 mb-2 text-white bg-gray-700 rounded-full focus:outline-none focus:shadow-outline'
-    : 'flex-shrink-0 px-3 py-1 mr-2 mb-2 text-gray-700 border border-gray-700 rounded-full focus:outline-none focus:shadow-outline';
+    ? 'flex-shrink-0 px-3 text-white bg-[#F82C47] rounded-full h-[37px]'
+    : 'flex-shrink-0 px-3 text-[#62626C] border border-[#62626C] rounded-full h-[37px]';
 
   return (
     <button onClick={onClick} className={className}>
@@ -51,23 +49,17 @@ interface GenreChipsProps {
   onGenreClick: (genreId: number) => void;
 }
 
-// 장르 칩들을 렌더링하는 컴포넌트
 const GenreChips = ({ onGenreClick }: GenreChipsProps) => {
-  // 선택된 장르의 상태를 관리합니다. 기본값은 "전체"로 설정됩니다.
   const [selectedGenre, setSelectedGenre] = useState(0);
 
-  // 장르 칩 클릭 핸들러
   const handleGenreClick = (genreId: number) => {
     setSelectedGenre(genreId); // 선택된 장르 상태를 업데이트합니다.
     onGenreClick(genreId); // 부모 컴포넌트의 핸들러를 호출합니다.
   };
 
   return (
-    <div className="flex flex-nowrap overflow-x-auto">
-      {/* "전체" 칩을 맨 앞에 추가하고, 선택 여부에 따라 스타일을 적용합니다. */}
+    <div className="flex flex-nowrap overflow-x-auto gap-1 scrollbar-hide">
       <GenreChip key="all" genreName="전체" isSelected={selectedGenre === 0} onClick={() => handleGenreClick(0)} />
-
-      {/* 나머지 장르 칩들을 렌더링합니다. */}
       {Object.entries(genres).map(([genreName, genreId]) => (
         <GenreChip
           key={genreId}

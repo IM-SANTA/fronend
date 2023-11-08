@@ -69,7 +69,7 @@ const MovieDetail: React.FC = () => {
   }
 
   return (
-    <Layout title={'영화상세'}>
+    <Layout>
       <div className="max-w-md mx-auto w-full">
         <MovieTrailer videoId={movieDetails.trailerId} />
       </div>
