@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply bg-primary; /* 예시로 파란색 배경을 적용합니다 */
+}
