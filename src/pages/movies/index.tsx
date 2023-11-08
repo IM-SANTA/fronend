@@ -3,44 +3,38 @@ import GenreChips from './GenreChips';
 import MovieCard from './MovieCard';
 import leftArrow from '../../assets/leftArrow.svg';
 import santa from '../../assets/santa.svg';
+import { useEffect, useState } from 'react';
 
-const movies = [
-  {
-    id: 1,
-    posterUrl:
-      'https://i.namu.wiki/i/yKCKWxSAUkSiQHdKyRckkA-miB0VZeIJcpgjtoYPcutixTS9IYbvpXpwD7TvmCIFEf5J52lSfXKFuJzH3UILLA.webp',
-    title: '영화 제목 1',
-    rating: 8.5,
-  },
-  {
-    id: 2,
-    posterUrl:
-      'https://i.namu.wiki/i/yKCKWxSAUkSiQHdKyRckkA-miB0VZeIJcpgjtoYPcutixTS9IYbvpXpwD7TvmCIFEf5J52lSfXKFuJzH3UILLA.webp',
-    title: '영화 제목 2',
-    rating: 7.5,
-  },
-  {
-    id: 3,
-    posterUrl:
-      'https://i.namu.wiki/i/yKCKWxSAUkSiQHdKyRckkA-miB0VZeIJcpgjtoYPcutixTS9IYbvpXpwD7TvmCIFEf5J52lSfXKFuJzH3UILLA.webp',
-    title: '영화 제목 3',
-    rating: 7.5,
-  },
-  {
-    id: 4,
-    posterUrl:
-      'https://i.namu.wiki/i/yKCKWxSAUkSiQHdKyRckkA-miB0VZeIJcpgjtoYPcutixTS9IYbvpXpwD7TvmCIFEf5J52lSfXKFuJzH3UILLA.webp',
-    title: '영화 제목 4',
-    rating: 7.5,
-  },
-  // 추가 영화 데이터...
-];
+export interface Movie {
+  id: number;
+  title: string;
+  genre_ids: number[];
+  overview: string;
+  vote_average: number;
+  poster_path: string;
+  genre_names: string[];
+  release_date: string;
+}
 
 const Movies = () => {
+  const [movies, setMovies] = useState<Movie[]>([]);
+
   const handleGenreClick = (genreId: number) => {
     console.log('Selected Genre ID:', genreId);
-    // 여기서 장르 ID에 따른 액션을 취할 수 있습니다.
   };
+
+  const fetchMovies = async () => {
+    try {
+      const movies = await fetch('https://rudolph.getsolaris.kr/movies').then((res) => res.json());
+      setMovies(movies.data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  useEffect(() => {
+    fetchMovies();
+  }, []);
 
   return (
     <Layout>

@@ -2,17 +2,21 @@
 // import Layout from './pages/Layout';
 import { useNavigate } from 'react-router-dom';
 import onboarding from './assets/onboarding.svg';
+import { useEffect } from 'react';
 
 function App() {
   const navigate = useNavigate();
-  const handleOnClick = () => {
-    navigate('/home');
-  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate('/home');
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="flex justify-center items-center h-screen">
-      {/* <button onClick={handleOnClick}> */}
-      <img onClick={handleOnClick} className="max-h-full cursor-pointer" src={onboarding} height="100%" alt="logo" />
-      {/* </button> */}
+      <img src={onboarding} alt="logo" className="h-full object-cover" />
     </div>
   );
 }

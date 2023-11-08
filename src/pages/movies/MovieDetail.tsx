@@ -4,7 +4,6 @@ import YouTube from 'react-youtube';
 import Layout from '../Layout';
 import leftArrow from '../../assets/leftArrow.svg';
 import star from '../../assets/star.svg';
-import disney from '../../assets/disney.svg';
 
 interface MovieDetails {
   ageRating: string;
@@ -95,13 +94,6 @@ const MovieDetail = () => {
           <div className="flex flex-col gap-3 pb-4">
             <p className="text-xs text-white">줄거리</p>
             <p className="text-[8px] text-white">{movieDetails.story}</p>
-          </div>
-        </div>
-        {/* 상영가능한 OTT */}
-        <div className="mt-5">
-          <h2 className="text-xs font-bold text-white mb-3">상영가능한 OTT</h2>
-          <div className="flex">
-            <img src={disney} alt="disney" />
           </div>
         </div>
         <div className="mt-6">
