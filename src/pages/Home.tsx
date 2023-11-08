@@ -19,7 +19,7 @@ const Home = () => {
           <NavLink to="/movies">
             <img src={movie} alt="movie" />
           </NavLink>
-          <NavLink to="/music">
+          <NavLink to="/musics">
             <img src={music} alt="music" />
           </NavLink>
           <NavLink to="/kitchen">

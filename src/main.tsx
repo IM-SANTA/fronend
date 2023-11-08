@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from './pages/Home.tsx';
 import Movies from './pages/movies/index.tsx';
 import MovieDetail from './pages/movies/MovieDetail.tsx';
+import Musics from './pages/musics/index.tsx';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: '/movie/:id',
     element: <MovieDetail />,
+  },
+  {
+    path: '/musics',
+    element: <Musics />,
   },
 ]);
 

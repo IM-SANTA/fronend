@@ -43,7 +43,7 @@ const Movies = () => {
   };
 
   return (
-    <Layout className="bg-white">
+    <Layout>
       <header className="flex items-center justify-between h-16 mx-6">
         <img src={leftArrow} />
         <div className="flex gap-1 justify-center items-center">
