@@ -1,29 +1,35 @@
 import Layout from '../Layout';
 import GenreChips from './GenreChips';
 import MovieCard from './MovieCard';
+import leftArrow from '../../assets/leftArrow.svg';
+import santa from '../../assets/santa.svg';
 
 const movies = [
   {
     id: 1,
-    posterUrl: '영화1_포스터_URL',
+    posterUrl:
+      'https://i.namu.wiki/i/yKCKWxSAUkSiQHdKyRckkA-miB0VZeIJcpgjtoYPcutixTS9IYbvpXpwD7TvmCIFEf5J52lSfXKFuJzH3UILLA.webp',
     title: '영화 제목 1',
     rating: 8.5,
   },
   {
     id: 2,
-    posterUrl: '영화2_포스터_URL',
+    posterUrl:
+      'https://i.namu.wiki/i/yKCKWxSAUkSiQHdKyRckkA-miB0VZeIJcpgjtoYPcutixTS9IYbvpXpwD7TvmCIFEf5J52lSfXKFuJzH3UILLA.webp',
     title: '영화 제목 2',
     rating: 7.5,
   },
   {
     id: 3,
-    posterUrl: '영화2_포스터_URL',
+    posterUrl:
+      'https://i.namu.wiki/i/yKCKWxSAUkSiQHdKyRckkA-miB0VZeIJcpgjtoYPcutixTS9IYbvpXpwD7TvmCIFEf5J52lSfXKFuJzH3UILLA.webp',
     title: '영화 제목 3',
     rating: 7.5,
   },
   {
     id: 4,
-    posterUrl: '영화2_포스터_URL',
+    posterUrl:
+      'https://i.namu.wiki/i/yKCKWxSAUkSiQHdKyRckkA-miB0VZeIJcpgjtoYPcutixTS9IYbvpXpwD7TvmCIFEf5J52lSfXKFuJzH3UILLA.webp',
     title: '영화 제목 4',
     rating: 7.5,
   },
@@ -37,15 +43,25 @@ const Movies = () => {
   };
 
   return (
-    <Layout title="산타극장" className="bg-white">
-      <GenreChips onGenreClick={handleGenreClick} />
-      <div className="container mx-auto px-4">
-        {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4"> */}
-        <div className="grid grid-cols-2 gap-4">
-          {movies.map((movie) => (
-            <MovieCard key={movie.id} {...movie} />
-          ))}
+    <Layout>
+      <header className="flex items-center justify-between h-16 mx-6">
+        <img src={leftArrow} />
+        <div className="flex gap-1 justify-center items-center">
+          <img src={santa} alt="santa" />
+          <span className="text-2xl font-medium text-white">산타극장</span>
         </div>
+        <div />
+      </header>
+      <div className="flex flex-col mx-5 border-t border-[#2C2D32] py-5 gap-9">
+        <GenreChips onGenreClick={handleGenreClick} />
+        <section className="container">
+          {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4"> */}
+          <div className="grid grid-cols-2 gap-x-3 gap-y-9">
+            {movies.map((movie) => (
+              <MovieCard key={movie.id} {...movie} />
+            ))}
+          </div>
+        </section>
       </div>
     </Layout>
   );
