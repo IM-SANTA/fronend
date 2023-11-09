@@ -116,9 +116,9 @@ const mockPlaces: Place[] = [
 
 const Outdoor = () => {
   const navigate = useNavigate();
-  const [region, setRegion] = useState<string | number>('서울시');
-  const [selectedOptions, setSelectedOptions] = useState<string[]>(['서울', '카페']);
-  const [places, setPlaces] = useState<Place[]>([]);
+  const [region] = useState<string | number>('서울시');
+  const [selectedOptions] = useState<string[]>(['서울', '카페']);
+  // const [places, setPlaces] = useState<Place[]>([]);
 
   const handleGenreClick = () => {
     console.log('clicked!');
