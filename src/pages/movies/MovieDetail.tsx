@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import YouTube from 'react-youtube';
 import countries from 'i18n-iso-countries';
 import koreanLocaleData from 'i18n-iso-countries/langs/ko.json';
@@ -64,21 +64,24 @@ const MovieTrailer = ({ videoId }: MovieTrailerProps) => {
 };
 
 const MovieDetail = () => {
+  const navigate = useNavigate();
   const { movieId } = useParams<{ movieId: string }>();
   const [movieDetails, setMovieDetails] = useState<MovieDetails | null>(null);
 
-  const trailer = movieDetails?.videos.find((video) => video.name.includes('예고'))?.url || movieDetails?.videos[0].url;
+  const trailer =
+    movieDetails?.videos?.find((video) => video.name.includes('예고'))?.url || movieDetails?.videos[0]?.url;
   const extractVideoId = (url: string) => {
     const match = url?.match(/(?:\?|&)v=([^&]+)/);
     return match ? match[1] : null;
   };
-
   const videoId = trailer && extractVideoId(trailer);
-  const country = movieDetails?.production_countries[0].iso_3166_1;
+
+  const country = movieDetails?.production_countries[0]?.iso_3166_1;
   const countryName = country && countries.getName(country, 'ko');
-  const releaseYear = movieDetails?.release_date.slice(0, 4);
-  const genres = movieDetails?.genres.map((genre) => genre.name).join(', ');
-  const movieInfo = `${countryName} \u00B7 ${releaseYear} \u00B7 ${genres} \u00B7 ${movieDetails?.runtime}분`;
+  const releaseYear = movieDetails?.release_date?.slice(0, 4);
+  const genres = movieDetails?.genres?.map((genre) => genre.name).join(', ');
+  const runtime = movieDetails?.runtime ? `${movieDetails.runtime}분` : null;
+  const movieInfo = [countryName, releaseYear, genres, runtime].filter(Boolean).join(' \u00B7 ');
 
   const fetchMovieData = async () => {
     try {
@@ -92,6 +95,7 @@ const MovieDetail = () => {
 
   useEffect(() => {
     fetchMovieData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!movieDetails) {
@@ -101,7 +105,9 @@ const MovieDetail = () => {
   return (
     <Layout>
       <header className="flex items-center justify-start h-16 mx-6">
-        <img src={leftArrow} />
+        <button onClick={() => navigate(-1)}>
+          <img src={leftArrow} />
+        </button>
       </header>
       <section className="flex flex-col mx-4">
         {videoId && (
