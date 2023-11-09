@@ -1,18 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import YouTube from 'react-youtube';
+import countries from 'i18n-iso-countries';
+import koreanLocaleData from 'i18n-iso-countries/langs/ko.json';
+
 import Layout from '../Layout';
 import leftArrow from '../../assets/leftArrow.svg';
 import star from '../../assets/star.svg';
-
-// interface MovieDetails {
-//   ageRating: string;
-//   title: string;
-//   info: string;
-//   story: string;
-//   similarContent: string[];
-//   trailerId: string;
-// }
 
 interface MovieDetails {
   id: number;
@@ -50,6 +44,8 @@ interface YouTubePlayerOptions {
   };
 }
 
+countries.registerLocale(koreanLocaleData);
+
 const MovieTrailer = ({ videoId }: MovieTrailerProps) => {
   const opts: YouTubePlayerOptions = {
     height: '100%',
@@ -78,10 +74,11 @@ const MovieDetail = () => {
   };
 
   const videoId = trailer && extractVideoId(trailer);
-  const country = movieDetails?.production_countries[0].name;
+  const country = movieDetails?.production_countries[0].iso_3166_1;
+  const countryName = country && countries.getName(country, 'ko');
   const releaseYear = movieDetails?.release_date.slice(0, 4);
   const genres = movieDetails?.genres.map((genre) => genre.name).join(', ');
-  const movieInfo = `${country} \u00B7 ${releaseYear} \u00B7 ${genres} \u00B7 ${movieDetails?.runtime}분`;
+  const movieInfo = `${countryName} \u00B7 ${releaseYear} \u00B7 ${genres} \u00B7 ${movieDetails?.runtime}분`;
 
   const fetchMovieData = async () => {
     try {
