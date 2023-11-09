@@ -18,22 +18,36 @@ export interface Movie {
 
 const Movies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [selectedGenre, setSelectedGenre] = useState<string | number>(0);
+  const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
 
-  const handleGenreClick = (genreId: number) => {
-    console.log('Selected Genre ID:', genreId);
+  const handleGenreClick = (genreId: string | number) => {
+    setSelectedGenre(genreId);
   };
 
   const fetchMovies = async () => {
     try {
-      const movies = await fetch('https://rudolph.getsolaris.kr/movies').then((res) => res.json());
-      setMovies(movies.data);
+      const response = await fetch('https://rudolph.getsolaris.kr/movies');
+      const movieData = await response.json();
+      setMovies(movieData.data);
+      setFilteredMovies(movieData.data);
     } catch (e) {
       console.error(e);
     }
   };
 
   useEffect(() => {
-    fetchMovies();
+    if (selectedGenre === 0) {
+      setFilteredMovies(movies);
+    } else {
+      // 선택된 장르 ID로 필터링합니다.
+      const filtered = movies.filter((movie) => movie.genre_ids.includes(parseInt(selectedGenre as string)));
+      setFilteredMovies(filtered); // 필터링된 영화 목록을 상태에 저장합니다.
+    }
+  }, [selectedGenre, movies]); // selectedGenre 또는 movies 배열이 변경될 때마다 이 효과를 실행합니다.
+
+  useEffect(() => {
+    fetchMovies(); // 컴포넌트 마운트 시 영화 목록을 가져옵니다.
   }, []);
 
   return (
@@ -51,7 +65,7 @@ const Movies = () => {
         <section className="container">
           {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4"> */}
           <div className="grid grid-cols-2 gap-x-3 gap-y-9">
-            {movies.map((movie) => (
+            {filteredMovies.map((movie) => (
               <MovieCard key={movie.id} {...movie} />
             ))}
           </div>
