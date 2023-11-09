@@ -1,9 +1,10 @@
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Layout from '../Layout';
 import GenreChips from './GenreChips';
 import MovieCard from './MovieCard';
 import leftArrow from '../../assets/leftArrow.svg';
 import santa from '../../assets/santa.svg';
-import { useEffect, useState } from 'react';
 
 export interface Movie {
   id: number;
@@ -17,23 +18,28 @@ export interface Movie {
 }
 
 const Movies = () => {
+  const navigate = useNavigate();
   const [movies, setMovies] = useState<Movie[]>([]);
   const [selectedGenre, setSelectedGenre] = useState<string | number>(0);
   const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
 
-  const handleGenreClick = (genreId: string | number) => {
-    setSelectedGenre(genreId);
-  };
+  const fetchMovies = async (genreId = '', page = 1) => {
+    const genreQueryParam = genreId ? `category=${genreId}&` : '';
+    const url = `https://rudolph.getsolaris.kr/movies?${genreQueryParam}page=${page}`;
 
-  const fetchMovies = async () => {
     try {
-      const response = await fetch('https://rudolph.getsolaris.kr/movies');
+      const response = await fetch(url);
       const movieData = await response.json();
       setMovies(movieData.data);
       setFilteredMovies(movieData.data);
     } catch (e) {
       console.error(e);
     }
+  };
+
+  const handleGenreClick = (genreId: string | number) => {
+    setSelectedGenre(genreId);
+    fetchMovies(genreId.toString(), 1);
   };
 
   useEffect(() => {
@@ -52,7 +58,9 @@ const Movies = () => {
   return (
     <Layout>
       <header className="flex items-center justify-between h-16 mx-6">
-        <img src={leftArrow} />
+        <button onClick={() => navigate('/home')}>
+          <img src={leftArrow} />
+        </button>
         <div className="flex gap-1 justify-center items-center">
           <img src={santa} alt="santa" />
           <span className="text-2xl font-medium text-white">산타극장</span>

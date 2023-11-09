@@ -1,5 +1,3 @@
-// 장르 데이터 객체
-
 import { useState } from 'react';
 
 export interface Genre {
@@ -56,6 +54,10 @@ const GenreChips = ({ onGenreClick }: GenreChipsProps) => {
   const handleGenreClick = (genreId: keyof Genre) => {
     setSelectedGenre(genreId);
     onGenreClick(genreId);
+
+    // URL을 업데이트하는 로직을 여기에 추가합니다.
+    // const genreQueryString = genreId ? `category=${genreId}&` : '';
+    // navigate(`/movies?${genreQueryString}page=1`);
   };
 
   return (
