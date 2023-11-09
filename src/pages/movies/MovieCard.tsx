@@ -10,11 +10,13 @@ interface MovieCardProps {
 
 const MovieCard = ({ id, poster_path, title, vote_average }: MovieCardProps) => {
   return (
-    <Link to={`/movie/${id}`} className="text-decoration-none">
+    <Link to={`/movie/${id}`} className="text-decoration-none justify-self-center">
       <div className="flex flex-col">
-        {poster_path && (
-          <img className="object-cover rounded-lg" src={poster_path} alt={`Poster of the movie titled ${title}`} />
-        )}
+        <div>
+          {poster_path && (
+            <img className="object-cover rounded-lg" src={poster_path} alt={`Poster of the movie titled ${title}`} />
+          )}
+        </div>
         <div className="mt-4">
           <h5 className="text-xl font-bold tracking-tight text-white">{title}</h5>
           <div className="flex">

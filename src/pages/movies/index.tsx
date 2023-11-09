@@ -40,14 +40,13 @@ const Movies = () => {
     if (selectedGenre === 0) {
       setFilteredMovies(movies);
     } else {
-      // 선택된 장르 ID로 필터링합니다.
       const filtered = movies.filter((movie) => movie.genre_ids.includes(parseInt(selectedGenre as string)));
-      setFilteredMovies(filtered); // 필터링된 영화 목록을 상태에 저장합니다.
+      setFilteredMovies(filtered);
     }
-  }, [selectedGenre, movies]); // selectedGenre 또는 movies 배열이 변경될 때마다 이 효과를 실행합니다.
+  }, [selectedGenre, movies]);
 
   useEffect(() => {
-    fetchMovies(); // 컴포넌트 마운트 시 영화 목록을 가져옵니다.
+    fetchMovies();
   }, []);
 
   return (

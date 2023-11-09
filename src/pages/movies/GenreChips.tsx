@@ -54,8 +54,8 @@ const GenreChips = ({ onGenreClick }: GenreChipsProps) => {
   const [selectedGenre, setSelectedGenre] = useState<keyof Genre>(0);
 
   const handleGenreClick = (genreId: keyof Genre) => {
-    setSelectedGenre(genreId); // 선택된 장르 상태를 업데이트합니다.
-    onGenreClick(genreId); // 부모 컴포넌트의 핸들러를 호출합니다.
+    setSelectedGenre(genreId);
+    onGenreClick(genreId);
   };
 
   return (
