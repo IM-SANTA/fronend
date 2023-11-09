@@ -10,7 +10,7 @@ interface MusicCardProps {
 const MusicCard = ({ id, thumbnail, title, creator }: MusicCardProps) => {
   return (
     <Link to={`/music/${id}`} className="text-decoration-none">
-      <div className="overflow-hidden mb-2">
+      <div className="overflow-hidden mb-2 scrollbar-hide">
         <img className="rounded w-full h-[116px]" src={thumbnail} />
       </div>
       <div className="flex flex-col gap-x-1">
