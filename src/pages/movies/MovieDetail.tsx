@@ -133,7 +133,7 @@ const MovieDetail = () => {
         </div>
         <div className="my-6">
           <h2 className="text-xs font-bold text-white mb-3">유사 콘텐츠</h2>
-          <div className="flex gap-x-2 overflow-scroll">
+          <div className="flex gap-x-2 overflow-scroll scrollbar-hide">
             {movieDetails.similar.map((movie) => (
               <img
                 width="33%"
