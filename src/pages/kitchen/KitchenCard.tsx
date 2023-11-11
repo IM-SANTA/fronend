@@ -20,7 +20,13 @@ const KitchenCard = ({ title, url, channel_name, youtube_id }: KitchenProps) => 
   return (
     <Link to={url} className="text-decoration-none">
       <div className="overflow-hidden mb-2 scrollbar-hide">
-        <img className="rounded w-full h-[116px]" src={imgUrl} alt="channel_name" onError={handleImgError} />
+        <img
+          className="rounded w-full h-[116px]"
+          src={imgUrl}
+          alt="channel_name"
+          onError={handleImgError}
+          loading="lazy"
+        />
       </div>
       <div className="flex flex-col gap-x-1">
         <span className="text-xl text-white line-clamp-2">{title}</span>

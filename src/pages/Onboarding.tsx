@@ -10,7 +10,7 @@ function Onboarding() {
       navigate('/home');
     }, 3000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="flex justify-center items-center h-screen">

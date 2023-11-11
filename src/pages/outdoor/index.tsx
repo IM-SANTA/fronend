@@ -78,7 +78,7 @@ const Outdoor = () => {
     <Layout position="relative">
       <header className="flex items-center justify-between h-16 mx-6">
         <button onClick={() => navigate('/home')}>
-          <img src={leftArrow} />
+          <img src={leftArrow} alt="arrow" />
         </button>
         <div className="flex gap-1 justify-center items-center">
           <img src={snowman} alt="santa" />

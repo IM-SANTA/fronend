@@ -21,7 +21,7 @@ const PlaceCard = ({ title, address, link, images }: PlaceCardProps) => {
     <Link to={link} className="w-full text-decoration-none justify-self-center">
       <div className="flex flex-col w-full h-full">
         <div className="grow h-full">
-          <img className="object-cover rounded-lg w-full h-full" src={imgSrc} alt={title} />
+          <img className="object-cover rounded-lg w-full h-full" src={imgSrc} alt={title} loading="lazy" />
         </div>
         <div className="mt-4">
           <h5 className="text-xl font-bold tracking-tight text-white line-clamp-2">{title}</h5>

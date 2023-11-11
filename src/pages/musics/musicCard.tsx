@@ -13,7 +13,11 @@ const MusicCard = ({ title, url, channel_name, youtube_id }: Music) => {
   return (
     <Link to={url} className="text-decoration-none">
       <div className="overflow-hidden mb-2 scrollbar-hide">
-        <img className="rounded w-full h-[116px]" src={`https://img.youtube.com/vi/${youtube_id}/maxresdefault.jpg`} />
+        <img
+          className="rounded w-full h-[116px]"
+          src={`https://img.youtube.com/vi/${youtube_id}/maxresdefault.jpg`}
+          loading="lazy"
+        />
       </div>
       <div className="flex flex-col gap-x-1">
         <span className="text-xl text-white line-clamp-2">{title}</span>
