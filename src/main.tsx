@@ -8,6 +8,7 @@ import Movies from './pages/movies/index.tsx';
 import MovieDetail from './pages/movies/MovieDetail.tsx';
 import Musics from './pages/musics/index.tsx';
 import Outdoor from './pages/outdoor/index.tsx';
+import Kitchen from './pages/kitchen/index.tsx';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: '/musics',
     element: <Musics />,
+  },
+  {
+    path: '/kitchen',
+    element: <Kitchen />,
   },
   {
     path: '/outdoor',
