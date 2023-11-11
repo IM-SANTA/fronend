@@ -56,7 +56,8 @@ const Outdoor = () => {
     setSelectedOption(category);
   };
 
-  const fetchPlaces = async (subRegion: string, option: string, latitude = '', longitude = '') => {
+  const fetchPlaces = async (region: string, subRegion: string, option: string, latitude = '', longitude = '') => {
+    const regionQueryParam = region.replace(/전국/, '');
     const regions = subRegion.split('/'); // 슬래시로 지역 분리
     const optionQueryParam = option ? `, ${option}` : '';
     const mapxParam = latitude ? `mapx=${latitude}&` : '';
@@ -66,7 +67,7 @@ const Outdoor = () => {
       const allPlaces = await Promise.all(
         regions.map(async (region) => {
           const subRegionQueryParam = region.replace(/전체/, '');
-          const url = `https://rudolph.getsolaris.kr/places?query=${subRegionQueryParam}${optionQueryParam}${mapxParam}${mapyParam}`;
+          const url = `https://rudolph.getsolaris.kr/places?query=${regionQueryParam}, ${subRegionQueryParam}${optionQueryParam}${mapxParam}${mapyParam}`;
           const response = await fetch(url);
           const placeData = await response.json();
           return placeData.data;
@@ -81,8 +82,8 @@ const Outdoor = () => {
   };
 
   useEffect(() => {
-    fetchPlaces(selectedSubRegion, selectedOption);
-  }, [selectedSubRegion, selectedOption]);
+    fetchPlaces(selectedRegion, selectedSubRegion, selectedOption);
+  }, [selectedRegion, selectedSubRegion, selectedOption]);
 
   return (
     <Layout position="relative">
