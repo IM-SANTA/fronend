@@ -4,8 +4,10 @@ import santa from '../../assets/santa.svg';
 import GenreChips, { genres } from './GenreChips';
 import MusicCard, { Music } from './musicCard';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Musics = () => {
+  const navigate = useNavigate();
   const [musics, setMusics] = useState<Music[]>();
   const [filteredMusics, setFilteredMusics] = useState<Music[]>();
 
@@ -42,7 +44,9 @@ const Musics = () => {
   return (
     <Layout>
       <header className="flex items-center justify-between h-16 mx-6">
-        <img src={leftArrow} />
+        <button onClick={() => navigate('/home')}>
+          <img src={leftArrow} />
+        </button>
         <div className="flex gap-1 justify-center items-center">
           <img src={santa} alt="santa" />
           <span className="text-2xl font-medium text-white">DJ루돌프</span>

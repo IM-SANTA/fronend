@@ -9,9 +9,9 @@ export interface Music {
   categories: string[];
 }
 
-const MusicCard = ({ id, title, channel_name, youtube_id }: Music) => {
+const MusicCard = ({ title, url, channel_name, youtube_id }: Music) => {
   return (
-    <Link to={`/music/${id}`} className="text-decoration-none">
+    <Link to={url} className="text-decoration-none">
       <div className="overflow-hidden mb-2 scrollbar-hide">
         <img className="rounded w-full h-[116px]" src={`https://img.youtube.com/vi/${youtube_id}/maxresdefault.jpg`} />
       </div>
