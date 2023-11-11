@@ -1,13 +1,14 @@
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 interface PlaceCardProps {
   id: number;
   title: string;
   address: string;
+  link: string;
   images: { id: number; thumbnail_url: string }[];
 }
 
-const PlaceCard = ({ title, address, images }: PlaceCardProps) => {
+const PlaceCard = ({ title, address, link, images }: PlaceCardProps) => {
   const thumbnail = images[0]?.thumbnail_url;
   const parts = address.split(' ');
   const firstPartTwoLetters = parts[0]?.substring(0, 2);
@@ -15,7 +16,7 @@ const PlaceCard = ({ title, address, images }: PlaceCardProps) => {
   const city = firstPartTwoLetters + secondPart;
 
   return (
-    <div className="text-decoration-none justify-self-center">
+    <Link to={link} className="w-full text-decoration-none justify-self-center">
       <div className="flex flex-col w-full h-full">
         <div className="grow">
           {thumbnail && <img className="object-cover rounded-lg w-full h-full" src={thumbnail} alt={title} />}
@@ -28,7 +29,7 @@ const PlaceCard = ({ title, address, images }: PlaceCardProps) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

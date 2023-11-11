@@ -11,8 +11,8 @@ interface RegionSelectorProps {
 }
 
 const RegionSelector = ({ selectedRegion, selectedSubRegion, onSave, onClose }: RegionSelectorProps) => {
-  const [clickedRegion, setClickedRegion] = useState<string>('서울');
-  const [clickedSubRegion, setClickedSubRegion] = useState<string>('서울전체');
+  const [clickedRegion, setClickedRegion] = useState<string>(selectedRegion);
+  const [clickedSubRegion, setClickedSubRegion] = useState<string>(selectedSubRegion);
   const mainRegions = Object.keys(regions);
 
   const handleRegionClick = (region: string) => {
@@ -62,7 +62,7 @@ const RegionSelector = ({ selectedRegion, selectedSubRegion, onSave, onClose }: 
             ))}
           </section>
           <section className="flex flex-col w-full text-white overflow-y-auto scrollbar-hide">
-            {regions[clickedRegion].map((subRegion) => (
+            {regions[clickedRegion]?.map((subRegion) => (
               <button
                 key={subRegion}
                 className={`h-12 min-h-[48px] flex items-center justify-end ${
