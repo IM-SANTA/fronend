@@ -7,6 +7,7 @@ import snowman from '../../assets/snowman.svg';
 import location from '../../assets/location.svg';
 import arrow from '../../assets/arrow.svg';
 import goToHome from '../../assets/goToHome.svg';
+import emptySnowmen from '../../assets/emptySnowmen.svg';
 // import close from '../../assets/close.svg';
 
 import Layout from '../Layout';
@@ -117,11 +118,20 @@ const Outdoor = () => {
             ),
         )}
       </section> */}
-      <section className="container">
-        <div className="grid grid-cols-2 gap-x-3 gap-y-9 mx-5 my-4">
-          {places?.map((place) => <PlaceCard key={place.id} {...place} />)}
-        </div>
-      </section>
+      {places ? (
+        <section className="container">
+          <div className="grid grid-cols-2 gap-x-3 gap-y-9 mx-5 my-4">
+            {places?.map((place) => <PlaceCard key={place.id} {...place} />)}
+          </div>
+        </section>
+      ) : (
+        <section>
+          <div className="flex flex-col gap-5 justify-center items-center h-96">
+            <img src={emptySnowmen} alt="empty" />
+            <span className="text-[#A2ACE2]">장소를 찾을 수 없습니다.</span>
+          </div>
+        </section>
+      )}
       {isModalOpen && (
         <RegionSelector
           selectedRegion={selectedRegion}
