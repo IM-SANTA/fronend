@@ -5,10 +5,21 @@ import movie from '../assets/movie.svg';
 import music from '../assets/music.svg';
 import kitchen from '../assets/kitchen.svg';
 import outdoor from '../assets/outdoor.svg';
+import { useEffect } from 'react';
+
+let isFirst = true;
 
 const Home = () => {
+  const animate = isFirst ? 'animate-fadeIn' : '';
+
+  useEffect(() => {
+    return () => {
+      isFirst = false;
+    };
+  }, []);
+
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className={`${animate} flex justify-center items-center h-screen`}>
       <div className="relative flex max-h-[1024px] justify-center items-center h-screen">
         <img src={home} alt="home" className="h-full object-cover" />
         <section className="absolute top-8">
