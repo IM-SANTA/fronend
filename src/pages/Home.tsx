@@ -6,14 +6,6 @@ import music from '../assets/music.svg';
 import kitchen from '../assets/kitchen.svg';
 import outdoor from '../assets/outdoor.svg';
 
-{
-  /* <div className="flex justify-center items-center h-screen">
-  <div className="relative flex max-h-[1024px] justify-center items-center h-screen">
-    <img src={onboarding} alt="onboarding" className="h-full object-cover" />
-  </div>
-</div>; */
-}
-
 const Home = () => {
   return (
     <div className="flex justify-center items-center h-screen">

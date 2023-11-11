@@ -12,7 +12,7 @@ const Layout = ({ position = 'static', children, ...props }: LayoutProps) => {
     <>
       <div
         {...props}
-        className={`${styles} ${position} flex justify-center min-h-screen h-screen items-start sm:items-center`}
+        className={`${styles} ${position} flex justify-center min-h-screen h-screen items-start 2xl:items-center`}
       >
         <main
           className={` bg-secondary overflow-scroll scrollbar-hide w-[540px] h-[1024px] md:min-w-[540px] md:min-h-[1024px]`}
