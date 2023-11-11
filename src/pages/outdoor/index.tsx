@@ -6,6 +6,7 @@ import leftArrow from '../../assets/leftArrow.svg';
 import snowman from '../../assets/snowman.svg';
 import location from '../../assets/location.svg';
 import arrow from '../../assets/arrow.svg';
+import goToHome from '../../assets/goToHome.svg';
 // import close from '../../assets/close.svg';
 
 import Layout from '../Layout';
@@ -84,7 +85,9 @@ const Outdoor = () => {
           <img src={snowman} alt="santa" />
           <span className="text-2xl font-medium text-white">오픈더도어</span>
         </div>
-        <div />
+        <button onClick={() => navigate('/home')}>
+          <img src={goToHome} alt="goToHome" />
+        </button>
       </header>
       <section className="flex mx-5 border-t border-[#2C2D32] py-5">
         <div

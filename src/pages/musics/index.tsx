@@ -1,6 +1,7 @@
 import Layout from '../Layout';
 import leftArrow from '../../assets/leftArrow.svg';
 import santa from '../../assets/santa.svg';
+import goToHome from '../../assets/goToHome.svg';
 import GenreChips, { genres } from './GenreChips';
 import MusicCard, { Music } from './musicCard';
 import { useEffect, useState } from 'react';
@@ -51,7 +52,9 @@ const Musics = () => {
           <img src={santa} alt="santa" />
           <span className="text-2xl font-medium text-white">DJ루돌프</span>
         </div>
-        <div />
+        <button onClick={() => navigate('/home')}>
+          <img src={goToHome} alt="goToHome" />
+        </button>
       </header>
       <div className="flex flex-col mx-5 border-t border-[#2C2D32] py-5 gap-9">
         <GenreChips onGenreClick={handleGenreClick} />

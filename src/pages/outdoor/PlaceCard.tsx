@@ -15,15 +15,22 @@ const PlaceCard = ({ title, address, link, images }: PlaceCardProps) => {
   const firstPartTwoLetters = parts[0]?.substring(0, 2);
   const secondPart = parts[1] ? `, ${parts[1]}` : '';
   const city = firstPartTwoLetters + secondPart;
-  const imgSrc = thumbnail ? thumbnail : snowman;
+  // const imgSrc = thumbnail ? thumbnail : snowman;
 
   return (
     <Link to={link} className="w-full text-decoration-none justify-self-center">
       <div className="flex flex-col w-full h-full">
-        <div className="grow h-full">
-          <img className="object-cover rounded-lg w-full h-full" src={imgSrc} alt={title} loading="lazy" />
-        </div>
-        <div className="mt-4">
+        {thumbnail ? (
+          <div className="h-2/3">
+            {/* <div className="grow h-full"> */}
+            <img className="object-cover rounded-lg w-full h-full" src={thumbnail} alt={title} loading="lazy" />
+          </div>
+        ) : (
+          <div className="flex justify-center items-center w-full h-full">
+            <img className="rounded-lg" src={snowman} alt={title} width="50%" loading="lazy" />
+          </div>
+        )}
+        <div className="mt-4 h-1/3">
           <h5 className="text-xl font-bold tracking-tight text-white line-clamp-2">{title}</h5>
           <div className="flex">
             <span className="text-sm text-white mr-0.5">{city}</span>

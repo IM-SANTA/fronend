@@ -7,6 +7,7 @@ import koreanLocaleData from 'i18n-iso-countries/langs/ko.json';
 import Layout from '../Layout';
 import leftArrow from '../../assets/leftArrow.svg';
 import star from '../../assets/star.svg';
+import goToHome from '../../assets/goToHome.svg';
 
 interface MovieDetails {
   id: number;
@@ -104,9 +105,13 @@ const MovieDetail = () => {
 
   return (
     <Layout>
-      <header className="flex items-center justify-start h-16 mx-6">
+      <header className="flex items-center justify-between h-16 mx-6">
         <button onClick={() => navigate(-1)}>
           <img src={leftArrow} />
+        </button>
+        <div />
+        <button onClick={() => navigate('/home')}>
+          <img src={goToHome} alt="goToHome" />
         </button>
       </header>
       <section className="flex flex-col mx-4">
