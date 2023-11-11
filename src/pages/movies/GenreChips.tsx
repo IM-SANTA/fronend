@@ -5,7 +5,7 @@ export interface Genre {
 }
 
 const genres = {
-  'x-mas': '10751,16,10402',
+  크리스마스: '10751,16,10402',
   액션: 28,
   모험: 12,
   애니메이션: 16,
@@ -54,10 +54,6 @@ const GenreChips = ({ onGenreClick }: GenreChipsProps) => {
   const handleGenreClick = (genreId: keyof Genre) => {
     setSelectedGenre(genreId);
     onGenreClick(genreId);
-
-    // URL을 업데이트하는 로직을 여기에 추가합니다.
-    // const genreQueryString = genreId ? `category=${genreId}&` : '';
-    // navigate(`/movies?${genreQueryString}page=1`);
   };
 
   return (
