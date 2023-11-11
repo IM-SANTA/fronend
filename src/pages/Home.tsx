@@ -14,7 +14,7 @@ const Home = () => {
         <section className="absolute top-8">
           <img src={logo} alt="logo" />
         </section>
-        <section className="absolute grid grid-cols-2 gap-y-7 gap-x-5 w-4/5 pt-4">
+        <section className="absolute grid grid-cols-2 gap-y-6 gap-x-5 w-3/4 pt-4">
           <NavLink to="/movies" className="justify-self-center">
             <img src={movie} alt="movie" />
           </NavLink>

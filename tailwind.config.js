@@ -4,9 +4,13 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      screens: {
+        web: '500px',
+      },
       colors: {
         primary: '#001432',
         secondary: '#000E23',
+        dim: 'rgba(34, 34, 34, 0.50)',
       },
       typography: () => ({
         DEFAULT: {

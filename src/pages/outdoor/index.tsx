@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import leftArrow from '../../assets/leftArrow.svg';
@@ -9,8 +9,9 @@ import arrow from '../../assets/arrow.svg';
 import close from '../../assets/close.svg';
 
 import Layout from '../Layout';
-import GenreChips from './GenreChips';
+import CategoryChips from './CategoryChips';
 import PlaceCard from './PlaceCard';
+import RegionSelector from './RegionSelector';
 
 interface image {
   id: number;
@@ -32,7 +33,7 @@ const mockPlaces: Place[] = [
     id: 1,
     title: '남산타워',
     category: '랜드마크',
-    address: '서울특별시 용산구 남산공원길 105',
+    address: '서울',
     mapx: '126.988227',
     mapy: '37.551169',
     images: [
@@ -116,16 +117,34 @@ const mockPlaces: Place[] = [
 
 const Outdoor = () => {
   const navigate = useNavigate();
-  const [region] = useState<string | number>('서울시');
-  const [selectedOptions] = useState<string[]>(['서울', '카페']);
-  // const [places, setPlaces] = useState<Place[]>([]);
+  const [selectedRegion, setSelectedRegion] = useState<string>('전체');
+  const [selectedSubRegion, setSelectedSubRegion] = useState<string>('서울전체');
 
-  const handleGenreClick = () => {
+  const [selectedOption, setSelectedOption] = useState<number>(0);
+  // const [places, setPlaces] = useState<Place[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const handleRegionClick = () => {
+    setIsModalOpen(true);
+    console.log('region selector clicked!');
+  };
+
+  const handleRegionOnClose = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleRegionOnSave = (region: string, subRegion: string) => {
+    setSelectedRegion(region);
+    setSelectedSubRegion(subRegion);
+  };
+
+  const handleCategoryClick = (category: number) => {
+    setSelectedOption(category);
     console.log('clicked!');
   };
 
   return (
-    <Layout>
+    <Layout position="relative">
       <header className="flex items-center justify-between h-16 mx-6">
         <button onClick={() => navigate('/home')}>
           <img src={leftArrow} />
@@ -137,16 +156,19 @@ const Outdoor = () => {
         <div />
       </header>
       <section className="flex mx-5 border-t border-[#2C2D32] py-5">
-        <div className="flex items-center text-white border-r pr-4 mr-4 flex-shrink-0">
+        <div
+          className="flex items-center text-white border-r pr-4 mr-4 flex-shrink-0 cursor-pointer"
+          onClick={handleRegionClick}
+        >
           <img src={location} alt="location" />
-          <span className="ml-1 mr-2 font-bold">{region}</span>
+          <span className="ml-1 mr-2 font-bold">{selectedSubRegion.replace(/전체/, '')}</span>
           <img src={arrow} alt="arrow" />
         </div>
-        <GenreChips onGenreClick={handleGenreClick} />
+        <CategoryChips onCategoryClick={handleCategoryClick} />
       </section>
       {/* <div className="flex flex-col mx-5 border-t border-[#2C2D32] py-5 gap-9"> */}
       <section className="flex gap-x-4 mx-5">
-        {selectedOptions.map((option, index) => (
+        {[selectedSubRegion.replace(/전체/, ''), selectedOption].map((option, index) => (
           <div key={index} className="flex gap-x-1">
             <span className="text-white font-medium">{option}</span>
             <img src={close} alt="close" />
@@ -160,6 +182,14 @@ const Outdoor = () => {
           ))}
         </div>
       </section>
+      {isModalOpen && (
+        <RegionSelector
+          selectedRegion={selectedRegion}
+          selectedSubRegion={selectedSubRegion}
+          onClose={handleRegionOnClose}
+          onSave={handleRegionOnSave}
+        />
+      )}
     </Layout>
   );
 };
