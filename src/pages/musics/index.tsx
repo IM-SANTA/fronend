@@ -9,18 +9,13 @@ const Musics = () => {
   const [musics, setMusics] = useState<Music[]>();
   const [filteredMusics, setFilteredMusics] = useState<Music[]>();
 
-  // 장르 ID에서 이름으로 매핑
   const genreNamesById = Object.fromEntries(Object.entries(genres).map(([name, id]) => [id, name]));
 
   const handleGenreClick = (genreId: number) => {
-    console.log('Selected Genre ID:', genreId);
     if (genreId === 0) {
-      // '전체' 장르 선택 시 모든 음악 표시
       setFilteredMusics(musics);
     } else {
-      // 장르 이름 찾기
       const genreName = genreNamesById[genreId];
-      // 해당 장르 이름을 포함하는 음악만 필터링
       const filtered = musics?.filter((music) => music?.categories.includes(genreName));
       setFilteredMusics(filtered);
     }

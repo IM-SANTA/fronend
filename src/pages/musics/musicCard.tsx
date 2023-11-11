@@ -16,8 +16,8 @@ const MusicCard = ({ id, title, channel_name, youtube_id }: Music) => {
         <img className="rounded w-full h-[116px]" src={`https://img.youtube.com/vi/${youtube_id}/maxresdefault.jpg`} />
       </div>
       <div className="flex flex-col gap-x-1">
-        <span className="text-xl text-white">{title}</span>
-        <span className="text-sm text-white">{channel_name}</span>
+        <span className="text-xl text-white line-clamp-2">{title}</span>
+        <span className="text-sm text-white line-clamp-1">{channel_name}</span>
       </div>
     </Link>
   );
