@@ -72,7 +72,9 @@ const Outdoor = () => {
           return placeData.data;
         }),
       );
-      setPlaces(allPlaces.flat());
+      // const musicsWithId = musicData.data.map((music: Music, index: number) => ({ ...music, id: index }));
+      const allPlacesWithId = allPlaces.flat().map((place: Place, index: number) => ({ ...place, id: index }));
+      setPlaces(allPlacesWithId);
     } catch (e) {
       console.error(e);
     }
