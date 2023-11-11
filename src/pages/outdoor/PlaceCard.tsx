@@ -27,11 +27,11 @@ const PlaceCard = ({ title, address, link, images }: PlaceCardProps) => {
           </div>
         ) : (
           <div className="flex justify-center items-center w-full h-full">
-            <img className="rounded-lg" src={snowman} alt={title} width="50%" loading="lazy" />
+            <img src={snowman} alt={title} width="50%" loading="lazy" />
           </div>
         )}
         <div className="mt-4 h-1/3">
-          <h5 className="text-xl font-bold tracking-tight text-white line-clamp-2">{title}</h5>
+          <h5 className="text-xl font-bold tracking-tight text-white line-clamp-1">{title}</h5>
           <div className="flex">
             <span className="text-sm text-white mr-0.5">{city}</span>
             <span className="text-sm text-white">· 카페</span>

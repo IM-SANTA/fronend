@@ -12,7 +12,7 @@ const MovieCard = ({ id, poster_path, title, vote_average }: MovieCardProps) => 
   return (
     <Link to={`/movie/${id}`} className="text-decoration-none justify-self-center">
       <div className="flex flex-col">
-        <div>
+        <div className="h-2/3">
           {poster_path && (
             <img
               className="object-cover rounded-lg"
@@ -22,7 +22,7 @@ const MovieCard = ({ id, poster_path, title, vote_average }: MovieCardProps) => 
             />
           )}
         </div>
-        <div className="mt-4">
+        <div className="mt-4 h-1/3">
           <h5 className="text-xl font-bold tracking-tight text-white">{title}</h5>
           <div className="flex">
             <span className="text-sm text-white mr-2">평점</span>
