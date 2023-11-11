@@ -56,16 +56,22 @@ const Outdoor = () => {
   };
 
   const fetchPlaces = async (subRegion: string, option: string, latitude = '', longitude = '') => {
-    const subRegionQueryParam = subRegion.replace(/전체/, '');
+    const regions = subRegion.split('/'); // 슬래시로 지역 분리
     const optionQueryParam = option ? `, ${option}` : '';
     const mapxParam = latitude ? `mapx=${latitude}&` : '';
     const mapyParam = longitude ? `mapy=${longitude}&` : '';
-    const url = `https://rudolph.getsolaris.kr/places?query=${subRegionQueryParam}${optionQueryParam}${mapxParam}${mapyParam}`;
 
     try {
-      const response = await fetch(url);
-      const placeData = await response.json();
-      setPlaces(placeData.data);
+      const allPlaces = await Promise.all(
+        regions.map(async (region) => {
+          const subRegionQueryParam = region.replace(/전체/, '');
+          const url = `https://rudolph.getsolaris.kr/places?query=${subRegionQueryParam}${optionQueryParam}${mapxParam}${mapyParam}`;
+          const response = await fetch(url);
+          const placeData = await response.json();
+          return placeData.data;
+        }),
+      );
+      setPlaces(allPlaces.flat());
     } catch (e) {
       console.error(e);
     }
