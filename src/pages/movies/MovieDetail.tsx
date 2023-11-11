@@ -84,9 +84,9 @@ const MovieDetail = () => {
   const runtime = movieDetails?.runtime ? `${movieDetails.runtime}분` : null;
   const movieInfo = [countryName, releaseYear, genres, runtime].filter(Boolean).join(' \u00B7 ');
 
-  const fetchMovieData = async () => {
+  const fetchMovieData = async (id: string) => {
     try {
-      const response = await fetch(`https://rudolph.getsolaris.kr/movies/${movieId}`);
+      const response = await fetch(`https://rudolph.getsolaris.kr/movies/${id}`);
       const movieData = await response.json();
       setMovieDetails(movieData.data);
     } catch (e) {
@@ -95,9 +95,9 @@ const MovieDetail = () => {
   };
 
   useEffect(() => {
-    fetchMovieData();
+    movieId && fetchMovieData(movieId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [movieId]);
 
   if (!movieDetails) {
     return <div>Loading...</div>;
@@ -146,6 +146,7 @@ const MovieDetail = () => {
                 src={movie.poster_path}
                 alt={movie.title}
                 className="rounded flex-shrink-0"
+                onClick={() => navigate(`/movie/${movie.id}`)}
               />
             ))}
           </div>

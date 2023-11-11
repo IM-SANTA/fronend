@@ -73,7 +73,6 @@ const Movies = () => {
       <div className="flex flex-col mx-5 border-t border-[#2C2D32] py-5 gap-9">
         <GenreChips onGenreClick={handleGenreClick} />
         <section className="container">
-          {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4"> */}
           <div className="grid grid-cols-2 gap-x-3 gap-y-9">
             {filteredMovies.map((movie) => (
               <MovieCard key={movie.id} {...movie} />
