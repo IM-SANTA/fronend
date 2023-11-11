@@ -6,7 +6,7 @@ import leftArrow from '../../assets/leftArrow.svg';
 import snowman from '../../assets/snowman.svg';
 import location from '../../assets/location.svg';
 import arrow from '../../assets/arrow.svg';
-import close from '../../assets/close.svg';
+// import close from '../../assets/close.svg';
 
 import Layout from '../Layout';
 import CategoryChips from './CategoryChips';
@@ -99,7 +99,7 @@ const Outdoor = () => {
         </div>
         <CategoryChips onCategoryClick={handleCategoryClick} />
       </section>
-      <section className="flex gap-x-4 mx-5">
+      {/* <section className="flex gap-x-4 mx-5">
         {[selectedSubRegion.replace(/전체/, ''), selectedOption].map(
           (option, index) =>
             option && (
@@ -109,7 +109,7 @@ const Outdoor = () => {
               </div>
             ),
         )}
-      </section>
+      </section> */}
       <section className="container">
         <div className="grid grid-cols-2 gap-x-3 gap-y-9 mx-5 my-4">
           {places?.map((place) => <PlaceCard key={place.id} {...place} />)}

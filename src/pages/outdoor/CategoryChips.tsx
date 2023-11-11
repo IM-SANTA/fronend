@@ -5,13 +5,13 @@ export interface Category {
 }
 
 const categories: Category = {
+  크리스마스: 6,
   카페: 1,
+  축제: 7,
   음식점: 2,
   편의시설: 3,
   공원: 4,
   백화점: 5,
-  '크리스마스 마켓': 6,
-  축제: 7,
   이벤트: 8,
 };
 
