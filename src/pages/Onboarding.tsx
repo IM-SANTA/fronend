@@ -14,7 +14,9 @@ function Onboarding() {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <img src={onboarding} alt="onboarding" className="h-full object-cover" />
+      <div className="relative flex max-h-[1024px] justify-center items-center h-screen">
+        <img src={onboarding} alt="onboarding" className="h-full object-cover" />
+      </div>
     </div>
   );
 }
