@@ -19,7 +19,6 @@ const Kitchen = () => {
     } else {
       const genreName = genreNamesById[genreId];
       const filtered = kitchens?.filter((kitchen) => {
-        console.log(kitchen.category, genreName);
         return kitchen.category === genreName;
       });
       setFilteredKitchens(filtered);
