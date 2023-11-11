@@ -11,6 +11,7 @@ export default {
         primary: '#001432',
         secondary: '#000E23',
         dim: 'rgba(34, 34, 34, 0.50)',
+        'button-opacity': 'rgba(248, 44, 71, 0.60)',
       },
       typography: () => ({
         DEFAULT: {

@@ -35,10 +35,10 @@ const RegionSelector = ({ selectedRegion, selectedSubRegion, onSave, onClose }: 
   };
 
   return (
-    <div className="absolute bottom-0 flex w-full items-end h-full bg-dim rounded-t-2xl">
+    <div className="fixed bottom-0 flex w-full max-w-[540px] items-end h-full bg-dim rounded-t-2xl">
       <div className="flex flex-col justify-between h-4/6 w-full rounded-t-2xl bg-[#2C2C34]">
-        <header className="flex items-center px-4 text-white rounded-t-2xl h-24 gap-4 border-b border-[#080818]">
-          <span className="text-[26px]">관심지역 설정</span>
+        <header className="flex items-center p-4 text-white rounded-t-2xl h-24 gap-4 border-b border-[#080818]">
+          <span className="text-2xl">관심지역 설정</span>
           <div className="flex grow justify-between">
             <div className="flex gap-x-1">
               <img src={myLocation} alt="myLocation" />
@@ -66,7 +66,7 @@ const RegionSelector = ({ selectedRegion, selectedSubRegion, onSave, onClose }: 
               <button
                 key={subRegion}
                 className={`h-12 min-h-[48px] flex items-center justify-end ${
-                  clickedSubRegion === subRegion ? 'bg-[#F82C47]' : ''
+                  clickedSubRegion === subRegion ? 'bg-button-opacity font-bold' : ''
                 }`}
                 onClick={() => handleSubRegionClick(subRegion)}
               >
@@ -75,7 +75,7 @@ const RegionSelector = ({ selectedRegion, selectedSubRegion, onSave, onClose }: 
             ))}
           </section>
         </main>
-        <footer className="flex text-white h-24 px-4 py-6 gap-2">
+        <footer className="flex text-white px-4 py-5 gap-2">
           <button className="w-1/3 text-xl border border-[#B0B0C2] rounded" onClick={handleReset}>
             초기화
           </button>
