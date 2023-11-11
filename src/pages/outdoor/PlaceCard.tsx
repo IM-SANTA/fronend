@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 interface PlaceCardProps {
   id: number;
@@ -7,11 +7,15 @@ interface PlaceCardProps {
   images: { id: number; thumbnail_url: string }[];
 }
 
-const PlaceCard = ({ id, title, address, images }: PlaceCardProps) => {
+const PlaceCard = ({ title, address, images }: PlaceCardProps) => {
   const thumbnail = images[0]?.thumbnail_url;
+  const parts = address.split(' ');
+  const firstPartTwoLetters = parts[0]?.substring(0, 2);
+  const secondPart = parts[1] ? `, ${parts[1]}` : '';
+  const city = firstPartTwoLetters + secondPart;
 
   return (
-    <Link to={`/movie/${id}`} className="text-decoration-none justify-self-center">
+    <div className="text-decoration-none justify-self-center">
       <div className="flex flex-col w-full h-full">
         <div className="grow">
           {thumbnail && <img className="object-cover rounded-lg w-full h-full" src={thumbnail} alt={title} />}
@@ -19,12 +23,12 @@ const PlaceCard = ({ id, title, address, images }: PlaceCardProps) => {
         <div className="mt-4">
           <h5 className="text-xl font-bold tracking-tight text-white">{title}</h5>
           <div className="flex">
-            <span className="text-sm text-white mr-2">{address}</span>
-            <span className="text-sm text-white ml-0.5">카페</span>
+            <span className="text-sm text-white mr-0.5">{city}</span>
+            <span className="text-sm text-white">· 카페</span>
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
