@@ -46,7 +46,6 @@ const Outdoor = () => {
   };
 
   const handleRegionOnSave = (region: string, subRegion: string) => {
-    console.log(region, subRegion);
     setSelectedRegion(region);
     setSelectedSubRegion(subRegion);
   };
@@ -65,7 +64,6 @@ const Outdoor = () => {
     try {
       const response = await fetch(url);
       const placeData = await response.json();
-      console.log(placeData.data);
       setPlaces(placeData.data);
     } catch (e) {
       console.error(e);
