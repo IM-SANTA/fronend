@@ -1,19 +1,26 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export interface Music {
+export interface KitchenProps {
   id: number;
   title: string;
   url: string;
   channel_name: string;
   youtube_id: string;
-  categories: string[];
+  category: string;
 }
 
-const MusicCard = ({ title, url, channel_name, youtube_id }: Music) => {
+const KitchenCard = ({ title, url, channel_name, youtube_id }: KitchenProps) => {
+  const [imgUrl, setImgUrl] = useState(`https://img.youtube.com/vi/${youtube_id}/maxresdefault.jpg`);
+
+  const handleImgError = () => {
+    setImgUrl('../../assets/santa.svg');
+  };
+
   return (
     <Link to={url} className="text-decoration-none">
       <div className="overflow-hidden mb-2 scrollbar-hide">
-        <img className="rounded w-full h-[116px]" src={`https://img.youtube.com/vi/${youtube_id}/maxresdefault.jpg`} />
+        <img className="rounded w-full h-[116px]" src={imgUrl} alt="channel_name" onError={handleImgError} />
       </div>
       <div className="flex flex-col gap-x-1">
         <span className="text-xl text-white line-clamp-2">{title}</span>
@@ -23,4 +30,4 @@ const MusicCard = ({ title, url, channel_name, youtube_id }: Music) => {
   );
 };
 
-export default MusicCard;
+export default KitchenCard;

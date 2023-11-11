@@ -8,6 +8,20 @@ export default {
         primary: '#001432',
         secondary: '#000E23',
       },
+      typography: () => ({
+        DEFAULT: {
+          css: {
+            // 2줄 말줄임표를 위한 커스텀 클래스
+            '.line-clamp-2': {
+              display: '-webkit-box',
+              '-webkit-line-clamp': '2',
+              '-webkit-box-orient': 'vertical',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+            },
+          },
+        },
+      }),
     },
   },
   plugins: [
